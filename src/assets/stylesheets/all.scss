@@ -1,0 +1,51 @@
+@import '~bootstrap/scss/functions';
+@import './helpers/variables';
+@import '~bootstrap/scss/bootstrap';
+@import 'swiper/css';
+
+body{
+  background-color: #eaf1f5;
+}
+img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.card{
+  background-color:transparent;
+  .card-footer{
+    background-color:transparent;
+  }
+  .card-img-top{
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  input {
+    background-color:var(--bs-info) !important;
+  }
+}
+.table, .input-group, form{
+  input, textarea {
+    background-color:var(--bs-info) !important;
+  }
+}
+select{
+  background-color:var(--bs-info) !important;
+}
+
+.mt-56px{
+  margin-top: 72px;
+}
+
+input[type=checkbox] {
+  border: 1px solid var(--bs-primary) !important;
+  user-select: none; /* 防止文字被滑鼠選取反白 */
+}
+
+input[type=checkbox]:checked {
+  background-color: var(--bs-primary) !important;
+}
+
+.banner-bg{
+  background-color: #e9ecefa2;
+}
