@@ -1,5 +1,6 @@
 <template>
-  <div class="container mt-56px">
+<div class="img-banner-ProductView mt-56px img-banner mb-6"></div>
+  <div class="container">
     <div class="card mb-3 border-0">
       <div class="row g-0">
         <div class="col-md-6">
@@ -14,9 +15,6 @@
             </p>
             <p class="text-secondary">
               {{product.description}}
-            </p>
-            <p class="text-secondary">
-              產地：{{product.origin_place}}
             </p>
             <p class="card-text text-secondary">
               <small>原價
@@ -66,13 +64,16 @@ export default {
   },
   methods: {
     getProduct () {
+      emitter.emit('page-loading', true)
       const { id } = this.$route.params
       this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/product/${id}`)
         .then(res => {
           this.product = res.data.product
+          emitter.emit('page-loading', false)
         })
         .catch(err => {
           alert(err)
+          emitter.emit('page-loading', false)
         })
     },
     addToCart (id, num = 1) {
@@ -83,7 +84,6 @@ export default {
       this.isLoading = id
       this.$http.post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`, { data })
         .then(res => {
-          console.log(res.data)
           emitter.emit('get-cart')
           this.$httpMessageState(res, '加入購物車')
           this.isLoading = ''
@@ -107,3 +107,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.img-banner-ProductView{
+  background-image: url(../assets/image/pageBanner/banner-product.jpg);
+  background-position: center left ;
+}
+</style>

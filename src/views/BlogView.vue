@@ -1,17 +1,14 @@
 <template>
-  <div class="img-01 py-6 mb-5 mt-56px"></div>
   <div class="container mt-56px">
-    <div class="row g-0">
-      <ul class="col-3 d-flex flex-column align-items-center">
-        <li class="mb-2 text-secondary">全部文章</li>
-        <li class="mb-2 text-secondary" v-for="tag in tagsList" :key="tag">{{tag}}</li>
-      </ul>
-      <div class="card col-9">
+    <div class="row g-0 pt-6 justify-content-center">
+      <div class="card col-md-7 border-0">
+        <h5 class="card-title text-secondary fw-bolder">{{article.title}}</h5>
         <img :src="article.image" class="card-img-top" :alt="article.title">
-        <div class="card-body">
-          <h5 class="card-title text-secondary fw-bolder">{{article.title}}</h5>
+        <div class="card-body px-0">
           <p v-html="article.content" class="card-text text-secondary"></p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <div class="d-flex justify-content-center">
+            <button class="btn btn-secondary mt-3" @click="this.$router.back(-1)">回上一頁</button>
+          </div>
         </div>
       </div>
     </div>
@@ -19,6 +16,7 @@
 </template>
 
 <script>
+import emitter from '@/libs/emitter.js'
 export default {
   data () {
     return {
@@ -28,14 +26,16 @@ export default {
   },
   methods: {
     getArticle () {
+      emitter.emit('page-loading', true)
       const { id } = this.$route.params
       this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/article/${id}`)
         .then(res => {
           this.article = res.data.article
-          console.log(this.article)
+          emitter.emit('page-loading', false)
         })
         .catch(err => {
           alert(err)
+          emitter.emit('page-loading', false)
         })
     },
     getBlogs (page = 1) {

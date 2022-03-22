@@ -1,7 +1,8 @@
 <template>
-  <div class="py-6">
+<div class="container-fluid bg-info">
+  <div class="pb-3">
     <div class="d-flex justify-content-center">
-      <h4 class="mb-4 fw-bolder text-secondary">熱門商品</h4>
+      <h4 class="my-4 fw-bolder text-secondary">熱門商品</h4>
     </div>
     <swiper
       :slidesPerView="slidesPerView"
@@ -13,23 +14,30 @@
         clickable: true,
       }"
       :modules="modules"
-      class="mySwiper mx-5 pb-5 bg-info"
+      class="mySwiper pb-5"
     >
       <swiper-slide v-for="product in products" :key="product.id">
         <div class="card border-0">
           <img :src="product.imageUrl" class="card-img-top" :alt="product.title">
           <div class="card-body py-2 p-0">
-            <h5 class="card-title mb-0 text-secondary">{{product.title}}</h5>
+            <h5 class="card-title mb-0 text-secondary fs-6">{{product.title}}</h5>
           </div>
           <div class="card-footer p-0 border-0 d-flex justify-content-between">
             <router-link class="btn btn-outline-secondary"
             :to="`/product/${product.id}`">查看更多</router-link>
             <button class="btn btn-primary" type="button"
-            @click="addToCart(product, num = 1)">加入購物車</button>
+            @click="addToCart(product, num = 1)">
+              <div v-if="isLoading === product.id">
+                <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                <span>請稍後...</span>
+              </div>
+              <span v-else>加入購物車</span>
+            </button>
           </div>
         </div>
       </swiper-slide>
     </swiper>
+  </div>
 </div>
 </template>
 <script>
@@ -54,6 +62,7 @@ export default {
   },
   data () {
     return {
+      isLoading: '',
       products: [],
       swiper: {},
       slidesPerView: 4,
@@ -71,6 +80,7 @@ export default {
         })
     },
     addToCart (product, num = 1) {
+      this.isLoading = product.id
       const data = {
         product_id: product.id,
         qty: num
@@ -79,9 +89,11 @@ export default {
         .then(res => {
           this.$httpMessageState(res, '加入購物車')
           emitter.emit('get-cart')
+          this.isLoading = ''
         })
         .catch(err => {
           alert(err)
+          this.isLoading = ''
         })
     }
   },

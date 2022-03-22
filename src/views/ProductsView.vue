@@ -1,14 +1,16 @@
 <template>
-    <div class="img-01 py-6 mb-5 mt-56px"></div>
+    <div class="img-banner-ProductsView mt-56px img-banner mb-6"></div>
 <div class="container">
   <div class="row flex-column flex-md-row">
     <ul class="col-12 col-md-3 d-flex flex-column align-items-center text-secondary">
-      <li class="mb-2">全部商品</li>
-      <li class="mb-2">原型香料</li>
-      <li class="mb-2">研磨香料</li>
-      <li class="mb-2">香料組合</li>
-      <li class="mb-2">香料禮盒</li>
-      <li class="mb-2">香料工具</li>
+      <li class="mb-2">
+        <a href="#" @click.prevent="getProducts">
+        全部商品
+        </a>
+      </li>
+      <li class="mb-2" v-for="type in productsType" :key="type">
+        <a href="#" @click.prevent="getProductsType(type)">{{type}}</a>
+      </li>
     </ul>
     <div class="card-group col-12 col-md-9">
       <div class="row row-cols-lg-3 row-cols-sm-2 row-cols-1">
@@ -16,7 +18,7 @@
           <div class="card border-0">
             <img :src="product.imageUrl" class="card-img-top" :alt="product.title">
             <div class="card-body py-2 px-0">
-              <h5 class="card-title mb-0 text-secondary">{{product.title}}</h5>
+              <h5 class="card-title mb-0 text-secondary fs-6">{{product.title}}</h5>
             </div>
             <div class="card-footer p-0 border-0">
               <router-link class="btn btn-outline-secondary"
@@ -59,19 +61,49 @@ import pagination from '@/components/PageView.vue'
 export default {
   data () {
     return {
+      allProducts: [],
       products: [],
       pagination: {},
-      isLoading: ''
+      isLoading: '',
+      productsType: []
     }
   },
   components: {
     pagination
   },
   methods: {
+    getAllProducts () {
+      this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`)
+        .then(res => {
+          emitter.emit('page-loading', true)
+          this.allProducts = res.data.products
+          const ary = []
+          this.allProducts.forEach(item => {
+            if (ary.indexOf(item.category) === -1) {
+              ary.push(item.category)
+            }
+          })
+          this.productsType = ary
+          emitter.emit('page-loading', false)
+        })
+        .catch(err => {
+          alert(err)
+          emitter.emit('page-loading', false)
+        })
+    },
     getProducts (page = 1) {
       this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/?page=${page}`)
         .then(res => {
-          console.log(res)
+          this.products = res.data.products
+          this.pagination = res.data.pagination
+        })
+        .catch(err => {
+          alert(err)
+        })
+    },
+    getProductsType (category) {
+      this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/?category=${category}`)
+        .then(res => {
           this.products = res.data.products
           this.pagination = res.data.pagination
         })
@@ -112,15 +144,15 @@ export default {
     }
   },
   mounted () {
+    this.getAllProducts()
     this.getProducts()
   }
 }
 </script>
 
 <style lang="scss">
-.img-01{
-  background-image: url(../assets/a12.jpg);
-  background-size: cover;
-  background-position: center center ;
+.img-banner-ProductsView{
+  background-image: url(../assets/image/pageBanner/banner-product.jpg);
+  background-position: center left ;
 }
 </style>

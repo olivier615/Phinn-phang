@@ -1,8 +1,7 @@
 <template>
-<div class="img-01 py-6 mt-56px mb-5"></div>
-  <div class="container">
+  <div class="container mt-56px">
     <div class="row justify-content-center flex-md-row flex-column">
-      <div class="col-md-5 col-12">
+      <div class="col-md-5 col-12 mt-5">
         <h4 class="text-center text-secondary fw-bolder">訂單編號</h4>
         <p class="text-center text-secondary">{{order.id}}</p>
         <h4 class="text-center mt-4 text-secondary fw-bolder">訂單內容</h4>
@@ -37,7 +36,7 @@
             </tfoot>
           </table>
         </div>
-      <div class="col-md-4 col-12">
+      <div class="col-md-4 col-12 mt-5">
         <h4 class="text-center text-secondary fw-bolder mb-4">支付方式</h4>
           <div class="d-flex flex-column justify-content-center">
             <select class="form-select form-select-md mb-3" aria-label=".form-select-sm"
@@ -47,9 +46,12 @@
               <option value="銀行轉帳">銀行轉帳</option>
               <option value="貨到付款">貨到付款</option>
             </select>
-            <button class="btn btn-primary mt-3"
-            :disabled="payment === '請選擇支付方式'"
-            @click="orderPay">確定支付</button>
+            <button class="btn btn-primary mt-3" type="button"
+            :disabled="payment === '請選擇支付方式' || isLoading === true"
+            @click="orderPay">
+              <span v-if="isLoading === true" class="spinner-border spinner-border-sm me-2" role="status"></span>
+              <span>確定支付</span>
+            </button>
           </div>
       </div>
     </div>
@@ -62,31 +64,37 @@ export default {
     return {
       orders: [],
       order: {},
-      payment: '請選擇支付方式'
+      payment: '請選擇支付方式',
+      isLoading: false
     }
   },
   methods: {
     getOrder () {
+      this.isLoading = true
       const { id } = this.$route.params
       this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/orders`)
         .then(res => {
           this.orders = res.data.orders
           this.order = this.orders.filter(item => item.id === id)
           this.order = this.order[0]
-          console.log(this.order)
+          this.isLoading = false
         })
         .catch(err => {
           alert(err)
+          this.isLoading = false
         })
     },
     orderPay () {
+      this.isLoading = true
       const { id } = this.$route.params
       this.$http.post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/pay/${id}`)
         .then(res => {
-          console.log(res)
+          this.isLoading = false
+          this.$router.push('/success')
         })
         .catch(err => {
           alert(err)
+          this.isLoading = false
         })
     }
   },

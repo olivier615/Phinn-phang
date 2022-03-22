@@ -62,7 +62,6 @@ export default {
     getCarts () {
       this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`)
         .then(res => {
-          console.log(res)
           this.carts = res.data.data
         })
         .catch(err => {

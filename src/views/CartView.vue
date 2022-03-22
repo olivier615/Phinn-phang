@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-56px">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mb-7">
       <div class="col-12 col-md-10" v-if="carts.carts?.length !== 0">
           <h3 class="text-center m-3 text-secondary fw-bolder mt-5">
             您的購物車
@@ -85,12 +85,16 @@
       </div>
     </div>
       </div>
-
+    <swiper></swiper>
 </template>
 
 <script>
 import emitter from '@/libs/emitter.js'
+import swiper from '@/components/SwiperView.vue'
 export default {
+  components: {
+    swiper
+  },
   data () {
     return {
       carts: [],
@@ -99,12 +103,15 @@ export default {
   },
   methods: {
     getCarts () {
+      emitter.emit('page-loading', true)
       this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`)
         .then(res => {
           this.carts = res.data.data
+          emitter.emit('page-loading', false)
         })
         .catch(err => {
           alert(err)
+          emitter.emit('page-loading', false)
         })
     },
     editNum (execute, key, item) {
@@ -169,6 +176,9 @@ export default {
   },
   mounted () {
     this.getCarts()
+    emitter.on('get-cart', () => {
+      this.getCarts()
+    })
   }
 }
 </script>

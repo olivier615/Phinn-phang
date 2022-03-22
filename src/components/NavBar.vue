@@ -5,7 +5,9 @@
   <div class="container d-flex justify-content-between">
     <nav class="navbar navbar-expand-lg" style="width:100%">
       <div class="container-fluid d-flex justify-content-between">
-        <router-link class="navbar-brand" to="/index">Phīnn-phang</router-link>
+        <router-link class="navbar-brand" to="/index">
+        <span class="h5 me-2">鼻芳</span>
+        <span class="text-headline h4">Phīnn-phang</span></router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="bi bi-list"></span>
         </button>

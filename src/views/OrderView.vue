@@ -1,10 +1,9 @@
 <template>
-<div class="img-01 py-6 mt-56px mb-5"></div>
-  <div class="home container">
+  <div class="home container mt-56px">
     <div class="row justify-content-center mt-4 flex-md-row flex-column">
       <div class="col-md-5 col-12 mt-5">
         <CartList :new-final-total="newFinalTotal"></CartList>
-        <h4 class="text-center mt-5 text-secondary fw-bolder">使用優惠券</h4>
+        <h4 class="text-center mt-5 text-secondary fw-bolder mb-4">使用優惠券</h4>
         <div class="input-group my-3">
           <input type="text" class="form-control" placeholder="請輸入優惠券代碼"
           aria-label="couponCode" aria-describedby="couponCode"
@@ -162,15 +161,18 @@ export default {
         })
     },
     getCarts () {
+      emitter.emit('page-loading', true)
       this.isLoading = true
       this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`)
         .then(res => {
           this.carts = res.data.data
           this.isLoading = ''
+          emitter.emit('page-loading', false)
         })
         .catch(err => {
           alert(err)
           this.isLoading = ''
+          emitter.emit('page-loading', false)
         })
     },
     backToPreviousPage () {

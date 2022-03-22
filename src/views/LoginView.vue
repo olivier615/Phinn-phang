@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid bg-sp">
     <div class="row justify-content-center">
-      <div class="col-5 bg-login" style="height:100vh">
+      <div class="col-12 col-lg-5 bg-login" style="height:100vh">
         <h1 class="h3 mb-3 font-weight-normal text-center text-light my-6">登入後台</h1>
         <form id="form" class="form-signin">
           <div class="form-floating mb-3">
@@ -91,7 +91,7 @@ export default {
   margin: auto;
 }
 .bg-login{
-    background-image: url(../assets/a23.jpg);
+    background-image: url(../assets/image/login.jpg);
     background-size: cover;
     background-position: center center;
 }

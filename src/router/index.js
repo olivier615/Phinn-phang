@@ -36,6 +36,10 @@ const routes = [
       {
         path: '/blog/:id',
         component: () => import('../views/BlogView.vue')
+      },
+      {
+        path: '/success',
+        component: () => import('../views/PaySuccess.vue')
       }
     ]
   },
@@ -53,47 +57,47 @@ const routes = [
     children: [
       {
         path: 'products',
-        component: () => import('../views/AdminProducts.vue')
+        component: () => import('../views/Admin/AdminProducts.vue')
       },
       {
         path: 'product/:id',
-        component: () => import('../views/AdminProduct.vue')
+        component: () => import('../views/Admin/AdminProduct.vue')
       },
       {
         path: 'product',
-        component: () => import('../views/AdminProduct.vue')
+        component: () => import('../views/Admin/AdminProduct.vue')
       },
       {
         path: 'orders',
-        component: () => import('../views/AdminOrders.vue')
+        component: () => import('../views/Admin/AdminOrders.vue')
       },
       {
         path: 'order/:id',
-        component: () => import('../views/AdminOrder.vue')
+        component: () => import('../views/Admin/AdminOrder.vue')
       },
       {
         path: 'coupons',
-        component: () => import('../views/AdminCoupons.vue')
+        component: () => import('../views/Admin/AdminCoupons.vue')
       },
       {
         path: 'coupon',
-        component: () => import('../views/AdminCoupon.vue')
+        component: () => import('../views/Admin/AdminCoupon.vue')
       },
       {
         path: 'coupon/:id',
-        component: () => import('../views/AdminCoupon.vue')
+        component: () => import('../views/Admin/AdminCoupon.vue')
       },
       {
         path: 'articles',
-        component: () => import('../views/AdminArticles.vue')
+        component: () => import('../views/Admin/AdminArticles.vue')
       },
       {
         path: 'article',
-        component: () => import('../views/AdminArticle.vue')
+        component: () => import('../views/Admin/AdminArticle.vue')
       },
       {
         path: 'article/:id',
-        component: () => import('../views/AdminArticle.vue')
+        component: () => import('../views/Admin/AdminArticle.vue')
       }
     ]
   }
