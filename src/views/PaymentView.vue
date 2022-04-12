@@ -56,7 +56,7 @@
             </label>
           </div>
           <div class="form-check border-secondary border mb-2 py-2"
-          :class="{ 'bg-info': payment === '貨到付款'}">
+          :class="{ 'bg-info': payment === '貨到付款' }">
             <input v-model="payment" value="貨到付款"
             class="form-check-input ms-6" type="radio" name="payment" id="cashOnDelivery">
             <label class="form-check-label ms-3" for="cashOnDelivery">

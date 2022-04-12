@@ -60,6 +60,7 @@ export default {
           this.articles = res.data.articles
           this.pagination = res.data.pagination
           this.getTagsList()
+          window.scroll(0, 0)
           emitter.emit('page-loading', false)
         })
         .catch(err => {
