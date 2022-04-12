@@ -1,6 +1,6 @@
 <template>
   <h2>後台-優惠券列表</h2>
-  <Loading :active="isLoading" :z-index="1060"></Loading>
+<Loading :active="isLoading" :z-index="1060" />
   <div class="container">
     <div class="text-end mt-4">
       <router-link class="btn btn-primary"
@@ -26,8 +26,8 @@
             <span v-if="coupon.is_enabled === 1">啟用中</span>
             <span v-else>未啟用</span>
           </td>
-          <td>{{coupon.percent}}</td>
-          <td>{{new Date(coupon.due_date * 1000).toLocaleDateString()}}</td>
+          <td>{{ coupon.percent }}</td>
+          <td>{{ new Date(coupon.due_date * 1000).toLocaleDateString() }}</td>
           <td>
             {{coupon.code}}
           </td>
@@ -50,12 +50,11 @@
       </tbody>
     </table>
     <!-- 分頁元件 -->
-    <pagination :pages="pagination" @get-products="getCoupons"></pagination>
+    <pagination :pages="pagination" @get-products="getCoupons" />
   </div>
   <deleteCoupon :coupon="coupon"
     ref="delCouponModal"
-    @update="getCoupons(pagination.current_page)"
-  ></deleteCoupon>
+    @update="getCoupons(pagination.current_page)" />
 </template>
 
 <script>

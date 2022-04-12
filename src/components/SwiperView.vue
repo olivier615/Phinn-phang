@@ -20,7 +20,7 @@
         <div class="card border-0">
           <img :src="product.imageUrl" class="card-img-top" :alt="product.title">
           <div class="card-body py-2 p-0">
-            <h5 class="card-title mb-0 text-secondary fs-6">{{product.title}}</h5>
+            <h5 class="card-title mb-0 text-secondary fs-6">{{ product.title }}</h5>
           </div>
           <div class="card-footer p-0 border-0 d-flex justify-content-between">
             <router-link class="btn btn-outline-secondary"
@@ -42,13 +42,10 @@
 </template>
 <script>
 import emitter from '@/libs/emitter.js'
-// Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue'
-// Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
-// import required modules
 import { Pagination } from 'swiper'
 export default {
   components: {

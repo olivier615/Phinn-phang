@@ -1,5 +1,5 @@
 <template>
-  <div class="home container mt-56px">
+  <div class="home container mt-80">
     <div class="row justify-content-center mt-4 flex-md-row flex-column">
       <div class="col-md-5 col-12 mt-5">
         <CartList :new-final-total="newFinalTotal"></CartList>
@@ -18,7 +18,7 @@
           </button>
         </div>
         <div v-if="couponMassage !== ''" class="alert alert-primary" role="alert">
-          {{couponMassage}}
+          {{ couponMassage }}
         </div>
       </div>
         <div class="col-md-4 col-12 mt-5">
@@ -69,7 +69,7 @@
               class="form-control"
               :class="{ 'is-invalid': errors['電話'] }"
               placeholder="請輸入電話"
-              rules="required|min:8"
+              rules="numeric|required|min:8|max:10"
               v-model="form.user.tel"
             ></FieldTemp>
             <error-message name="電話" class="invalid-feedback"></error-message>
@@ -202,13 +202,8 @@ export default {
     }
   },
   mounted () {
+    window.scroll(0, 0)
     this.getCarts()
   }
 }
 </script>
-
-<style lang="scss">
-.table > :not(:first-child) {
-  border-top:   0 !important;
-}
-</style>

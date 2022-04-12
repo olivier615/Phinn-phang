@@ -1,0 +1,15 @@
+.card{
+  background-color:transparent;
+  .card-footer{
+    background-color:transparent;
+  }
+  .card-img-top, .img-fluid, .rounded-start{
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+  input {
+    background-color:var(--bs-info) !important;
+  }
+}

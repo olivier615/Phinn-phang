@@ -1,0 +1,9 @@
+.table, .input-group, form{
+  input, textarea {
+    background-color:var(--bs-info) !important;
+  }
+}
+
+.table > :not(:first-child) {
+  border-top:   0 !important;
+}

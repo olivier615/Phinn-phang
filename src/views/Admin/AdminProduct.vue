@@ -1,5 +1,5 @@
 <template>
-<Loading :active="isLoading" :z-index="1060"></Loading>
+<Loading :active="isLoading" :z-index="1060" />
   <h2>單一產品頁面</h2>
       <div class="modal-dialog modal-xl">
       <div class="modal-content border-0">

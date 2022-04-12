@@ -21,8 +21,8 @@
           ></button>
         </div>
         <div class="modal-body">
-          <p>訂單編號：{{order.id}}</p>
-          <p>訂購者：{{order.user.name}}</p>
+          <p>訂單編號：{{ order.id }}</p>
+          <p>訂購者：{{ order.user.name }}</p>
           <div>
             <span>支付狀態：</span>
             <span v-if="order.is_paid" class="badge bg-primary">已支付</span>

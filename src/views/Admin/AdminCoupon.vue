@@ -1,5 +1,5 @@
 <template>
-<Loading :active="isLoading" :z-index="1060"></Loading>
+<Loading :active="isLoading" :z-index="1060" />
   <h2>新增/編輯優惠券</h2>
   <div class="container">
     <div class="row">

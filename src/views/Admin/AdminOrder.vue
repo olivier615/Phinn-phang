@@ -1,5 +1,5 @@
 <template>
-<Loading :active="isLoading" :z-index="1060"></Loading>
+<Loading :active="isLoading" :z-index="1060" />
   <h2>訂單詳情</h2>
   <div class="container">
     <div class="text-end">
@@ -93,7 +93,7 @@
             <td>
             </td>
             <td>
-              {{item.product.title}}
+              {{ item.product.title }}
               <div class="text-success">
                 已套用優惠券
               </div>
@@ -108,7 +108,7 @@
             </td>
             <td class="text-end">
               <!-- <small class="text-success">折扣價：</small> -->
-              {{item.total}}
+              {{ item.total }}
             </td>
           </tr>
         </template>

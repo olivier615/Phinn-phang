@@ -1,25 +1,27 @@
 <template>
-    <div class="img-banner-ProductsView mt-56px img-banner mb-6"></div>
+    <div class="img-banner-ProductsView mt-80 img-banner mb-6" />
 <div class="container">
   <div class="row flex-column flex-md-row">
-    <ul class="col-12 col-md-3 d-flex flex-column align-items-center text-secondary">
+    <ul class="list-style-none col-12 col-md-3 d-flex flex-column align-items-center text-secondary">
       <li class="mb-2">
         <a href="#" @click.prevent="getProducts">
         全部商品
         </a>
       </li>
       <li class="mb-2" v-for="type in productsType" :key="type">
-        <a href="#" @click.prevent="getProductsType(type)">{{type}}</a>
+        <a href="#" @click.prevent="getProductsType(type)">{{ type }}</a>
       </li>
     </ul>
     <div class="card-group col-12 col-md-9">
       <div class="row row-cols-lg-3 row-cols-sm-2 row-cols-1">
-        <div class="col mb-4" v-for="product in products" :key="product.id">
+        <div class="col mb-3 py-2" v-for="product in products" :key="product.id">
           <div class="card border-0">
-            <img :src="product.imageUrl" class="card-img-top" :alt="product.title">
-            <div class="card-body py-2 px-0">
-              <h5 class="card-title mb-0 text-secondary fs-6">{{product.title}}</h5>
-            </div>
+            <router-link :to="`/product/${product.id}`">
+              <img :src="product.imageUrl" class="card-img-top" :alt="product.title">
+              <div class="card-body py-2 px-0">
+                <h5 class="card-title mb-0 text-secondary fs-6">{{ product.title }}</h5>
+              </div>
+            </router-link>
             <div class="card-footer p-0 border-0">
               <router-link class="btn btn-outline-secondary"
               :to="`/product/${product.id}`" style="width:100%"
@@ -50,7 +52,7 @@
       </div>
     </div>
     <div class="d-flex justify-content-md-end justify-content-center my-4">
-      <pagination :pages="pagination" @get-products="getProducts"></pagination>
+      <pagination :pages="pagination" @get-products="getProducts"/>
     </div>
   </div>
 </div>
@@ -73,9 +75,9 @@ export default {
   },
   methods: {
     getAllProducts () {
+      emitter.emit('page-loading', true)
       this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`)
         .then(res => {
-          emitter.emit('page-loading', true)
           this.allProducts = res.data.products
           const ary = []
           this.allProducts.forEach(item => {
@@ -144,6 +146,7 @@ export default {
     }
   },
   mounted () {
+    window.scroll(0, 0)
     this.getAllProducts()
     this.getProducts()
   }
@@ -153,6 +156,6 @@ export default {
 <style lang="scss">
 .img-banner-ProductsView{
   background-image: url(../assets/image/pageBanner/banner-product.jpg);
-  background-position: center left ;
+  background-position: center left;
 }
 </style>

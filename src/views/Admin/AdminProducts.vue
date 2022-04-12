@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Loading :active="isLoading" :z-index="1060"></Loading>
+    <Loading :active="isLoading" :z-index="1060" />
     <h2>後台-產品列表</h2>
     <div class="text-end mt-4">
       <button class="btn btn-primary" @click="openProductPage('new')">
@@ -63,12 +63,11 @@
       </tbody>
     </table>
     <!-- 分頁元件 -->
-    <pagination :pages="pagination" @get-products="getProducts"></pagination>
+    <pagination :pages="pagination" @get-products="getProducts" />
   </div>
   <deleteProduct :edit-product="editProduct"
   ref="delProductModal"
-  @update="getProducts(pagination.current_page)"
-  ></deleteProduct>
+  @update="getProducts(pagination.current_page)" />
 </template>
 
 <script>

@@ -1,5 +1,4 @@
 <template>
-  <!-- <Loading :active="isLoading" :z-index="1060"></Loading> -->
   <h2>新增/編輯文章</h2>
   <div class="container">
       <div class="bg-dark text-white p-2 mb-3">

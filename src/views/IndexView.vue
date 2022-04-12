@@ -1,10 +1,10 @@
 <template>
-  <div class="bg mt-56px d-flex align-items-md-center align-items-start">
+  <div class="bg mt-80 d-flex align-items-md-center align-items-start">
       <div class="container d-flex justify-content-md-start justify-content-center mt-6 mt-md-0">
         <div class="banner-bg d-inline-block p-3 ms-md-7">
           <h2 class="text-primary fw-bolder">享受生活美好滋味</h2>
           <p class="text-secondary fw-bolder">用味蕾探索世界<br>跟著香料芬芳感受大自然最棒的禮物</p>
-          <button type="button" class="btn btn-primary" style="width:100%">選購香料</button>
+          <router-link to="/products" type="button" class="btn btn-primary" style="width:100%">選購香料</router-link>
         </div>
       </div>
   </div>
@@ -68,7 +68,7 @@
               <h5 class="card-title border-start border-primary ps-2 border-3 mt-4 fw-bolder text-secondary">
                 捉摸不定的香氣
               </h5>
-              <p class="card-text text-secondary">不同的香料需要不一樣的處理方法，黑胡椒研磨成粉後，其氣味分子會立即揮發至空氣中，不用幾分鐘就消散殆盡。而八角的外殼堅硬，需要長時間的熬煮，才能得到其溫暖強烈的香氣</p>
+              <p class="card-text text-secondary mb-2 mb-sm-0">不同的香料需要不一樣的處理方法，黑胡椒研磨成粉後，其氣味分子會立即揮發至空氣中，不用幾分鐘就消散殆盡。而八角的外殼堅硬，需要長時間的熬煮，才能得到其溫暖強烈的香氣</p>
             </div>
             <img src="../assets/image/index/intro/intro-2.jpg" class="col-md-6 col-12" alt="">
           </div>
@@ -80,7 +80,7 @@
               <h5 class="card-title border-start border-primary ps-2 border-3 mt-4 fw-bolder text-secondary">
                 難以定義的香氣
               </h5>
-              <p class="card-text text-secondary">多數的香料都有著極其多樣複雜的氣味分子組成，以香草為例，雖然有 97% 以上的香草食品都是使用人工香草醛來獲得香草的醇厚香氣，但香草有超過 250 種以上已知的香味分子，是人工香草醛無法比擬的</p>
+              <p class="card-text text-secondary mb-2 mb-sm-0">多數的香料都有著極其多樣複雜的氣味分子組成，以香草為例，雖然有 97% 以上的香草食品都是使用人工香草醛來獲得香草的醇厚香氣，但香草有超過 250 種以上已知的香味分子，是人工香草醛無法比擬的</p>
             </div>
           </div>
           <div class="d-flex justify-content-between mb-2 row">
@@ -88,7 +88,7 @@
               <h5 class="card-title border-start border-primary ps-2 border-3 mt-4 fw-bolder text-secondary">
                 無法抗拒的香氣
               </h5>
-              <p class="card-text text-secondary">許多香料除了其本身的風味，有著更多意想不到的功效，肉桂本身嘗起來並不甜，但能讓食材吃起來更甜，因此其非常適合用在甜品或是烘焙上</p>
+              <p class="card-text text-secondary mb-2 mb-sm-0">許多香料除了其本身的風味，有著更多意想不到的功效，肉桂本身嘗起來並不甜，但能讓食材吃起來更甜，因此其非常適合用在甜品或是烘焙上</p>
             </div>
             <img src="../assets/image/index/intro/intro-4.jpg" class="col-md-6 col-12" alt="">
           </div>
@@ -101,39 +101,22 @@
   </div>
   <div class="container my-6">
     <h4 class="mb-4 border-start border-primary ps-2 border-3 fw-bolder text-secondary">最新文章</h4>
-    <div class="card mb-3 border-0">
-      <div class="row g-0">
-        <div class="col-md-6">
-          <img :src="article01.image" class="img-fluid" :alt="article01.title">
-        </div>
-        <div class="col-md-5 d-flex align-items-center offset-md-1">
-          <div class="card-body d-flex flex-column ps-0">
-            <h5 class="card-title fw-bolder text-primary">{{article01.title}}</h5>
-            <p class="mb-1"><small>{{new Date(article01.create_at * 1000).toLocaleDateString()}}</small></p>
-            <p class="card-text text-secondary">
-              {{article01.description}}
-            </p>
-            <div class="d-flex justify-content-md-start justify-content-center">
-              <router-link :to="`/blog/${article01.id}`" class="btn btn-outline-primary">查看更多</router-link>
-            </div>
+    <div class="mb-3" v-for="article in articles" :key="article.title">
+      <div class="card border-0">
+        <div class="row g-0">
+          <div class="col-md-6">
+            <img :src="article.image" class="img-fluid" :alt="article.title">
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="card border-0">
-      <div class="row g-0">
-        <div class="col-md-6">
-          <img :src="article02.image" class="img-fluid" :alt="article02.title">
-        </div>
-        <div class="col-md-5 d-flex align-items-center offset-md-1">
-          <div class="card-body d-flex flex-column ps-0">
-            <h5 class="card-title fw-bolder text-primary">{{article02.title}}</h5>
-            <p class="mb-1"><small>{{new Date(article02.create_at * 1000).toLocaleDateString()}}</small></p>
-            <p class="card-text text-secondary">
-              {{article02.description}}
-            </p>
-            <div class="d-flex justify-content-md-start justify-content-center">
-              <router-link :to="`/blog/${article02.id}`" class="btn btn-outline-primary">查看更多</router-link>
+          <div class="col-md-5 d-flex align-items-center offset-md-1">
+            <div class="card-body d-flex flex-column ps-0">
+              <h5 class="card-title fw-bolder text-primary">{{ article.title }}</h5>
+              <p class="mb-1"><small>{{ new Date(article.create_at * 1000).toLocaleDateString() }}</small></p>
+              <p class="card-text text-secondary">
+                {{article.description}}
+              </p>
+              <div class="d-flex justify-content-md-start justify-content-center">
+                <router-link :to="`/blog/${article.id}`" class="btn btn-outline-primary">查看更多</router-link>
+              </div>
             </div>
           </div>
         </div>
@@ -160,43 +143,37 @@
       </div>
     </div>
   </div>
-  <swiper></swiper>
+  <swiper />
   <div class="container mt-6">
     <div class="row">
-      <div class="col-12">
-        <h4 class="mb-4 border-start border-primary ps-2 border-3 fw-bolder text-secondary">追蹤鼻芳</h4>
-        <div class="d-flex">
-          <a href="#" class="mx-1">
-            <div class="p-relative h-touch">
-              <img src="../assets/image/index/media/media-05.jpg" alt="">
-                <span class="bi bi-facebook text-light p-absolute p-center h-hide fs-4"></span>
-            </div>
-          </a>
-          <a href="#" class="mx-1">
-            <div class="p-relative h-touch">
-              <img src="../assets/image/index/media/media-01.jpg" alt="">
-                <span class="bi bi-twitter text-light p-absolute p-center h-hide fs-4"></span>
-            </div>
-          </a>
-          <a href="#" class="mx-1">
-            <div class="p-relative h-touch">
-              <img src="../assets/image/index/media/media-03.jpg" alt="">
-                <span class="bi bi-instagram text-light p-absolute p-center h-hide fs-4"></span>
-            </div>
-          </a>
-          <a href="#" class="mx-1">
-            <div class="p-relative h-touch">
-              <img src="../assets/image/index/media/media-02.jpg" alt="">
-                <span class="bi bi-instagram text-light p-absolute p-center h-hide fs-4"></span>
-            </div>
-          </a>
-          <a href="#" class="mx-1">
-            <div class="p-relative h-touch">
-              <img src="../assets/image/index/media/media-04.jpg" alt="">
-                <span class="bi bi-instagram text-light p-absolute p-center h-hide fs-4"></span>
-            </div>
-          </a>
+      <h4 class="mb-4 border-start border-primary ps-2 border-3 fw-bolder text-secondary">追蹤鼻芳</h4>
+        <div class="col-12 col-sm-6 col-md-4">
+          <div class="d-flex flex-column justify-content-start" style="height:100%">
+            <a class="btn btn-outline-primary fw-bolder fs-5 mb-2">
+              <span class="bi bi-instagram fs-4 me-2"></span>
+              <span>
+                Instagram
+              </span>
+            </a>
+            <a class="btn btn-outline-primary fw-bolder fs-5 mb-2">
+              <span class="bi bi-twitter fs-4 me-2"></span>
+              <span>
+                Twitter
+              </span>
+            </a>
+            <a class="btn btn-outline-primary fw-bolder fs-5 mb-2">
+              <span class="bi bi-facebook fs-4 me-2"></span>
+              <span>
+                Facebook
+              </span>
+            </a>
+          </div>
         </div>
+      <div class="col-12 col-sm-6 col-md-4 mb-3 mb-sm-0">
+        <img src="../assets/image/index/media/media-03.jpg" alt="">
+      </div>
+      <div class="col-4 d-none d-md-block">
+        <img src="../assets/image/index/media/media-05.jpg" alt="">
       </div>
     </div>
   </div>
@@ -211,9 +188,7 @@ export default {
   },
   data () {
     return {
-      articles: [],
-      article01: {},
-      article02: {}
+      articles: []
     }
   },
   methods: {
@@ -222,8 +197,7 @@ export default {
       this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/articles/?page=${page}`)
         .then(res => {
           this.articles = res.data.articles
-          this.article01 = this.articles[0]
-          this.article02 = this.articles[1]
+          this.articles.map((item, index) => index <= 2)
           emitter.emit('page-loading', false)
         })
         .catch(err => {
@@ -233,6 +207,7 @@ export default {
     }
   },
   mounted () {
+    window.scroll(0, 0)
     this.getBlogs()
   }
 }
@@ -245,52 +220,21 @@ export default {
   height: 100vh
 }
 .bg2{
-  background-attachment: fixed;
   background-image: url(../assets/image/index/attachment/att-01.jpg);
   background-size: cover;
-  background-position: bottom center;
+  background-position: center center;
   height: 50vh
 }
 .bg3{
-  background-attachment: fixed;
   background-image: url(../assets/image/index/attachment/att-02.jpg);
   background-size: cover;
   background-position: center center;
   height: 50vh
 }
 .bg4{
-  background-attachment: fixed;
   background-image: url(../assets/image/index/attachment/att-03.jpg);
   background-size: cover;
   background-position: center center;
   height: 50vh
 }
-.p-relative{
-  position: relative;
-}
-.p-absolute{
-  position: absolute;
-}
-.p-center{
-  top: 50%;
-  left: 50%;
-  z-index: 10;
-  transform: translate(-50%, -50%);
-}
-.h-hide{
-  opacity: 0;
-  transition: all 0.8s ease;
-}
-.h-touch:hover .h-hide{
-  opacity: 1;
-  transition: all 0.8s ease;
-}
-.h-touch img{
-  transition: all 0.5s ease;
-}
-.h-touch:hover img{
-  -webkit-filter:brightness(.3);
-  transition: all 0.5s ease;
-}
-
 </style>

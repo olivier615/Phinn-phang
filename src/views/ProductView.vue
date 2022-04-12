@@ -1,29 +1,42 @@
 <template>
-<div class="img-banner-ProductView mt-56px img-banner mb-6"></div>
+<div class="img-banner-ProductView mt-80 img-banner mb-6" />
   <div class="container">
     <div class="card mb-3 border-0">
       <div class="row g-0">
-        <div class="col-md-6">
+        <div class="offset-1">
+          <nav aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <router-link to="/products">產品列表</router-link>
+              </li>
+              <li class="breadcrumb-item">
+                <router-link to="/products">{{ product.category }}</router-link>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
+            </ol>
+          </nav>
+        </div>
+        <div class="col-md-5 offset-1">
           <img :src="product.imageUrl" class="img-fluid rounded-start" :alt="product.title" />
         </div>
-        <div class="col-md-6">
-          <div class="card-body">
-            <span class="text-secondary">{{product.category}}</span>
-            <h5 class="card-title fs-3 mb-3 mt-2 text-secondary">{{product.title}}</h5>
+        <div class="col-md-5">
+          <div class="card-body pt-0">
+            <span class="text-secondary">{{ product.category }}</span>
+            <h5 class="card-title fs-3 mb-3 mt-2 text-secondary">{{ product.title }}</h5>
             <p class="card-text text-secondary">
-              {{product.content}}
+              {{ product.content }}
             </p>
             <p class="text-secondary">
-              {{product.description}}
+              {{ product.description }}
             </p>
-            <p class="card-text text-secondary">
-              <small>原價
+            <p class="card-text text-secondary fs-4">
+              <small class="fs-6">原價
                 <del>
-                  {{product.origin_price}}
+                  {{ product.origin_price }}
                 </del>
                 元
-              </small>
-              特價{{product.price}}元
+              </small><br>
+              特價{{ product.price }}元
             </p>
             <div class="d-flex justify-content-end mt-4">
               <div class="d-flex border border-secondary me-3">
@@ -45,6 +58,45 @@
               <span v-else>加入購物車</span>
               </button>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="accordion col-10 offset-1" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            有效期限與保存方式
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body text-secondary">
+            製造日期與有效期限印刷於商品包裝，拆封後須密封置於冷藏，避免受潮或陽光直射。建議於拆封後 3 個月內使用完畢，如發現內容物變色，受潮，請立即丟棄。
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            訂單查詢與配送方式
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+          <div class="accordion-body text-secondary">
+            訂單成立後，將在 1-3 個工作天內寄出您的商品，您可以於 查詢訂單 查看您的訂單狀態，有任何問題請聯繫我們。
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            退/換貨方式
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+          <div class="accordion-body text-secondary">
+            在您收到商品後 7 日內享有退/換貨免運費，但須保持商品包裝完整<br>
+            若您發現您收到的商品與您的訂單不符，請聯繫我們，將有專人協助您處理。
           </div>
         </div>
       </div>
@@ -103,6 +155,7 @@ export default {
     }
   },
   mounted () {
+    window.scroll(0, 0)
     this.getProduct()
   }
 }
@@ -111,6 +164,6 @@ export default {
 <style lang="scss">
 .img-banner-ProductView{
   background-image: url(../assets/image/pageBanner/banner-product.jpg);
-  background-position: center left ;
+  background-position: center left;
 }
 </style>

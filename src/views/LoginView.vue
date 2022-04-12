@@ -69,8 +69,8 @@ export default {
           )}; path=/`
           this.$router.push('/admin')
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
+          alert('登入失敗')
         })
     },
     backToPreviousPage () {

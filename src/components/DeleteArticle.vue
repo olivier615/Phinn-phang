@@ -22,7 +22,7 @@
         </div>
         <div class="modal-body">
           <p class="text-center">
-            確定刪除{{article.title}}？
+            確定刪除{{ article.title }}？
             <strong class="text-danger">(刪除文章後將無法恢復)。</strong>
           </p>
         </div>

@@ -22,7 +22,7 @@
         </div>
         <div class="modal-body">
           <p class="text-center">
-            確定刪除{{coupon.title}}？
+            確定刪除{{ coupon.title }}？
             <strong class="text-danger">(刪除優惠券後將無法恢復)。</strong>
           </p>
         </div>

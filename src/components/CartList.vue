@@ -32,7 +32,7 @@
       </tr>
       <tr v-if=" carts.total - carts.final_total !== 0">
         <td colspan="3" class="text-end">折扣</td>
-        <td class="text-end">{{ carts.total - carts.final_total}}</td>
+        <td class="text-end">{{ carts.total - carts.final_total }}</td>
       </tr>
       <tr>
         <td colspan="3" class="text-end">總計</td>

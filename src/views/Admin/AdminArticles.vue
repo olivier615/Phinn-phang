@@ -1,5 +1,5 @@
 <template>
-<Loading :active="isLoading" :z-index="1060"></Loading>
+<Loading :active="isLoading" :z-index="1060" />
   <h2>後台-文章列表</h2>
   <div class="container">
     <div class="text-end mt-4">
@@ -21,10 +21,10 @@
       </thead>
       <tbody>
         <tr v-for="article in articles" :key="article.title">
-          <td>{{article.title}}</td>
-          <td>{{article.tag}}</td>
-          <td>{{article.author}}</td>
-          <td>{{new Date(article.create_at * 1000).toLocaleDateString()}}</td>
+          <td>{{ article.title }}</td>
+          <td>{{ article.tag }}</td>
+          <td>{{ article.author }}</td>
+          <td>{{ new Date(article.create_at * 1000).toLocaleDateString() }}</td>
           <td>
             <span v-if="article.isPublic">啟用中</span>
             <span v-else>未啟用</span>
@@ -49,10 +49,10 @@
       </tbody>
     </table>
     <!-- 分頁元件 -->
-    <pagination :pages="pagination" @get-products="getArticles"></pagination>
+    <pagination :pages="pagination" @get-products="getArticles" />
     <deleteArticle :article="article"
     ref="delArticleModal"
-    @update="getArticles(pagination.current_page)"></deleteArticle>
+    @update="getArticles(pagination.current_page)" />
   </div>
 </template>
 

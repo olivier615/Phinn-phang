@@ -1,20 +1,20 @@
 <template>
-  <div class="img-01 py-6 mb-5 mt-56px img-banner-BlogsView img-banner"></div>
+  <div class="img-01 py-6 mb-5 mt-80 img-banner-BlogsView img-banner" />
   <div class="container">
     <div class="row">
         <div class="col-12 col-md-3">
           <a class="mb-2 text-primary" href="#" @click.prevent="getBlogs">全部文章</a>
-          <div class="mb-2 text-secondary"><small>文章標籤</small></div>
+          <div class="mb-1 text-secondary"><small>文章標籤</small></div>
           <div class="d-flex flex-wrap">
             <a class="mb-2 text-primary border border-primary px-1 me-1"
             v-for="tag in tagsList" :key="tag" href="#"
-            @click.prevent="searchBlog(tag)">{{tag}}</a>
+            @click.prevent="selectTag(tag)">{{ tag }}</a>
           </div>
         </div>
         <div class="card-group col-md-9 col-12">
-          <div v-for="article in articles" :key="article.create_at">
+          <div v-for="article in searchArticles" :key="article.create_at">
             <div class="card mb-3 border-0">
-              <div class="row g-0">
+              <router-link class="row g-0" :to="`/blog/${article.id}`">
                 <div class="col-md-6">
                   <img :src="article.image" class="img-fluid" :alt="article.title">
                 </div>
@@ -25,12 +25,12 @@
                     <router-link :to="`/blog/${article.id}`">閱讀更多</router-link>
                   </div>
                 </div>
-              </div>
+              </router-link>
             </div>
           </div>
         </div>
       <div class="d-flex justify-content-md-end justify-content-center my-4">
-        <pagination :pages="pagination" @get-products="getBlogs"></pagination>
+        <pagination :pages="pagination" @get-products="getBlogs" />
       </div>
     </div>
   </div>
@@ -48,12 +48,13 @@ export default {
       articles: [],
       pagination: {},
       tagsList: [],
-      searchArticles: []
+      tag: ''
     }
   },
   methods: {
     getBlogs (page = 1) {
       emitter.emit('page-loading', true)
+      this.tag = ''
       this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/articles/?page=${page}`)
         .then(res => {
           this.articles = res.data.articles
@@ -75,26 +76,20 @@ export default {
         })
       })
     },
-    searchBlog (tag) {
-      this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/articles`)
-        .then(res => {
-          this.articles = res.data.articles
-          this.pagination = res.data.pagination
-          this.getTagsList()
-          this.searchArticles = []
-          this.articles.forEach(item => {
-            if (item.tags.indexOf(tag) >= 0) {
-              this.searchArticles.push(item)
-            }
-          })
-          this.articles = this.searchArticles
-        })
-        .catch(err => {
-          alert(err)
-        })
+    selectTag (tag) {
+      this.tag = tag
+    }
+  },
+  computed: {
+    searchArticles () {
+      const searchArticles = this.articles.filter(item => {
+        return item.tags.toString().match(this.tag)
+      })
+      return searchArticles
     }
   },
   mounted () {
+    window.scroll(0, 0)
     this.getBlogs()
   }
 }

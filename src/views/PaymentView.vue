@@ -1,9 +1,9 @@
 <template>
-  <div class="container mt-56px">
+  <div class="container mt-80">
     <div class="row justify-content-center flex-md-row flex-column">
       <div class="col-md-5 col-12 mt-5">
         <h4 class="text-center text-secondary fw-bolder">訂單編號</h4>
-        <p class="text-center text-secondary">{{order.id}}</p>
+        <p class="text-center text-secondary">{{ order.id }}</p>
         <h4 class="text-center mt-4 text-secondary fw-bolder">訂單內容</h4>
           <table class="table">
             <thead class="text-secondary">
@@ -31,28 +31,46 @@
             <tfoot class="text-secondary">
               <tr>
                 <td colspan="2" class="text-end">訂單金額</td>
-                <td class="text-end">{{order.total}}</td>
+                <td class="text-end">{{ order.total }}</td>
               </tr>
             </tfoot>
           </table>
         </div>
       <div class="col-md-4 col-12 mt-5">
         <h4 class="text-center text-secondary fw-bolder mb-4">支付方式</h4>
-          <div class="d-flex flex-column justify-content-center">
-            <select class="form-select form-select-md mb-3" aria-label=".form-select-sm"
-            v-model="payment">
-              <option selected disabled>請選擇支付方式</option>
-              <option value="信用卡">信用卡付款</option>
-              <option value="銀行轉帳">銀行轉帳</option>
-              <option value="貨到付款">貨到付款</option>
-            </select>
-            <button class="btn btn-primary mt-3" type="button"
-            :disabled="payment === '請選擇支付方式' || isLoading === true"
+        <div class="d-flex flex-column px-6">
+          <div class="form-check border-secondary border mb-2 py-2"
+          :class="{ 'bg-info': payment === '信用卡付款'}">
+            <input v-model="payment" value="信用卡付款"
+            class="form-check-input ms-6" type="radio" name="payment" id="creditCard">
+            <label class="form-check-label ms-3" for="creditCard">
+              信用卡付款
+            </label>
+          </div>
+          <div class="form-check border-secondary border mb-2 py-2"
+          :class="{ 'bg-info': payment === '銀行轉帳'}">
+            <input v-model="payment" value="銀行轉帳"
+            class="form-check-input ms-6" type="radio" name="payment" id="transfer">
+            <label class="form-check-label ms-3" for="transfer">
+              銀行轉帳
+            </label>
+          </div>
+          <div class="form-check border-secondary border mb-2 py-2"
+          :class="{ 'bg-info': payment === '貨到付款'}">
+            <input v-model="payment" value="貨到付款"
+            class="form-check-input ms-6" type="radio" name="payment" id="cashOnDelivery">
+            <label class="form-check-label ms-3" for="cashOnDelivery">
+              貨到付款
+            </label>
+          </div>
+          <button class="btn btn-primary mt-3" type="button"
+            :disabled="payment === '' || isLoading === true"
             @click="orderPay">
               <span v-if="isLoading === true" class="spinner-border spinner-border-sm me-2" role="status"></span>
-              <span>確定支付</span>
+              <span v-if="payment">確定支付</span>
+              <span v-if="!payment">請選擇支付方式</span>
             </button>
-          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -64,7 +82,7 @@ export default {
     return {
       orders: [],
       order: {},
-      payment: '請選擇支付方式',
+      payment: '',
       isLoading: false
     }
   },
@@ -72,6 +90,8 @@ export default {
     getOrder () {
       this.isLoading = true
       const { id } = this.$route.params
+      sessionStorage.setItem('orderId', id)
+      console.log(sessionStorage)
       this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/orders`)
         .then(res => {
           this.orders = res.data.orders
@@ -99,6 +119,7 @@ export default {
     }
   },
   mounted () {
+    window.scroll(0, 0)
     this.getOrder()
   }
 }

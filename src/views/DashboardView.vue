@@ -37,7 +37,7 @@
       </div>
     </div>
   </nav>
-  <router-view v-if="isLogin"></router-view>
+  <router-view v-if="isLogin" />
 </template>
 <script>
 export default {

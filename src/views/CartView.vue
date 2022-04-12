@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-56px">
+  <div class="container mt-80">
     <div class="row justify-content-center mb-7">
       <div class="col-12 col-md-10" v-if="carts.carts?.length !== 0">
           <h3 class="text-center m-3 text-secondary fw-bolder mt-5">
@@ -17,12 +17,12 @@
             </thead>
             <tbody>
               <tr v-for="(item, keys) in carts.carts" :key="item">
-                <th class="d-none d-md-table-cell">{{keys + 1}}</th>
+                <th class="d-none d-md-table-cell">{{ keys + 1 }}</th>
                 <td>
                   <router-link :to="`/product/${item.product.id}`" class="mb-0">
                     {{item.product.title}}
                   </router-link>
-                  <span class="d-md-none d-black"><br>{{item.total}} 元</span>
+                  <span class="d-md-none d-black"><br>{{ item.total }} 元</span>
                 </td>
                 <td>
                   <div class="d-flex">
@@ -35,10 +35,10 @@
                     <a href="" @click.prevent="editNum('add', keys, item)">
                       <span class="bi bi-plus fs-4 px-1"></span>
                     </a>
-                    <p class="pt-1 m-0 d-md-black d-none">{{item.product.unit}}</p>
+                    <p class="pt-1 m-0 d-md-black d-none">{{ item.product.unit }}</p>
                   </div>
                 </td>
-                <td class="d-none d-md-table-cell">{{item.total}}</td>
+                <td class="d-none d-md-table-cell">{{ item.total }}</td>
                 <td>
                   <span
                   class="spinner-border spinner-border-sm fs-5 text-primary" role="status"
@@ -53,7 +53,7 @@
                 <td colspan="4" class="text-end d-none d-md-table-cell">總計</td>
                 <td colspan="2" class="text-end d-table-cell d-md-none">總計</td>
                 <td class="text-end">
-                  {{carts.total}}</td>
+                  {{ carts.total }}</td>
               </tr>
             </tfoot>
           </table>
@@ -74,7 +74,7 @@
       <div class="text-center text-primary mt-6" v-else>
         <h3>購物車還是空的！</h3>
         <div class="mt-3">
-          <button to="/order" @click="backToPreviousPage"
+          <button @click="backToPreviousPage" type="button"
           class="btn btn-outline-secondary me-1">
             回上一頁
           </button>
@@ -85,7 +85,7 @@
       </div>
     </div>
       </div>
-    <swiper></swiper>
+    <swiper />
 </template>
 
 <script>
@@ -160,6 +160,7 @@ export default {
       this.isLoading = true
       this.$http.delete(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/carts`)
         .then(res => {
+          window.scroll(0, 0)
           this.getCarts()
           emitter.emit('get-cart')
           this.$httpMessageState(res, '清除購物車')
@@ -175,16 +176,14 @@ export default {
     }
   },
   mounted () {
+    window.scroll(0, 0)
     this.getCarts()
     emitter.on('get-cart', () => {
       this.getCarts()
     })
+  },
+  unmounted () {
+    emitter.off()
   }
 }
 </script>
-
-<style lang="scss">
-.table > :not(:first-child) {
-    border-top:   0 !important;
-}
-</style>

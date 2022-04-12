@@ -3,7 +3,6 @@
 </template>
 
 <style lang="scss">
-@import './assets/stylesheets/reset.css';
 @import './assets/stylesheets/all.scss';
 </style>
 
@@ -17,9 +16,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-a {
-  text-decoration: none !important;
-}
-</style>

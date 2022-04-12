@@ -1,5 +1,5 @@
 <template>
-<Loading :active="isLoading" :z-index="1060"></Loading>
+<Loading :active="isLoading" :z-index="1060" />
   <h2>後台-訂單列表</h2>
   <div class="container">
       <table class="table mt-4">
@@ -39,12 +39,11 @@
         </tbody>
       </table>
       <!-- 分頁元件 -->
-    <pagination :pages="pagination" @getProducts="getOrders"></pagination>
+    <pagination :pages="pagination" @getProducts="getOrders" />
     <deleteOrder
       :order="order"
       ref="delOrderModal"
-      @update="getOrders(pagination.current_page)"
-      ></deleteOrder>
+      @update="getOrders(pagination.current_page)" />
   </div>
 </template>
 
