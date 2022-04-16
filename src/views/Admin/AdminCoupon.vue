@@ -101,7 +101,6 @@ export default {
             this.$router.push('/admin/coupons')
           })
           .catch((err) => {
-            console.log(err.message)
             this.isLoading = false
           })
       } else {
@@ -114,7 +113,6 @@ export default {
             this.$router.push('/admin/coupons')
           })
           .catch(err => {
-            console.log(err.message)
             this.isLoading = false
           })
       }
@@ -149,7 +147,6 @@ export default {
             this.isLoading = false
           })
           .catch(() => {
-            console.log('無法取得優惠券資料')
             this.isLoading = false
           })
       }

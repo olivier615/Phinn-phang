@@ -142,7 +142,6 @@ export default {
           this.isLoading = ''
         })
         .catch(err => {
-          console.dir(err)
           this.isLoading = ''
         })
     },

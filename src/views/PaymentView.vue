@@ -91,7 +91,6 @@ export default {
       this.isLoading = true
       const { id } = this.$route.params
       sessionStorage.setItem('orderId', id)
-      console.log(sessionStorage)
       this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/orders`)
         .then(res => {
           this.orders = res.data.orders

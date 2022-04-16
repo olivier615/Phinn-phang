@@ -78,7 +78,6 @@ export default {
       this.isLoading = true
       this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/articles/?page=${page}`)
         .then(res => {
-          console.log(res)
           this.articles = res.data.articles
           this.pagination = res.data.pagination
           this.isLoading = false

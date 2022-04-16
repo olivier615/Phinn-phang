@@ -143,7 +143,6 @@ export default {
           })
           .catch((err) => {
             this.isLoading = false
-            console.log(err)
           })
       }
     },
@@ -154,12 +153,10 @@ export default {
       formData.append('file-to-upload', file)
       this.$http.post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/upload/`, formData)
         .then(res => {
-          console.log(res.data.imageUrl)
           this.product.imageUrl = res.data.imageUrl
           this.isLoading = false
         })
         .catch(err => {
-          console.log(err)
           this.isLoading = false
         })
     },

@@ -159,7 +159,6 @@ export default {
           this.isLoading = false
         })
         .catch((err) => {
-          console.dir(err)
           this.isLoading = false
         })
     },
@@ -177,7 +176,6 @@ export default {
           this.$router.push('/admin/orders')
         })
         .catch((err) => {
-          console.dir(err)
           this.isLoading = false
         })
     }

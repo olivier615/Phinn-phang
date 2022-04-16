@@ -135,7 +135,6 @@ export default {
       this.isLoading = product.id
       this.$http.post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`, { data })
         .then(res => {
-          console.log(res.data)
           this.$httpMessageState(res, '加入購物車')
           numInput[0].value = 1
           emitter.emit('get-cart')

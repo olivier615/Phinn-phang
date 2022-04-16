@@ -163,23 +163,19 @@ export default {
     upload () {
       this.isLoading = true
       const file = fileInput.files[0] // 使用 console.dir 找到 fileInput.files 類陣列的位置
-      console.log(file)
       const formData = new FormData() // 建立 api 上傳資料 所需格式
       formData.append('file-to-upload', file)
       this.$http.post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/upload/`, formData)
         .then(res => {
-          console.log(res.data.imageUrl)
           this.article.image = res.data.imageUrl
           this.isLoading = false
         })
         .catch(err => {
-          console.log(err)
           this.isLoading = false
         })
     },
     addNewTag () {
       this.article.tags.push('')
-      console.log(this.article.tags)
     },
     deleteTag (key) {
       this.article.tags.splice(key, 1)

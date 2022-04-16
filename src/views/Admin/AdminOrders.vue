@@ -84,7 +84,6 @@ export default {
           this.isLoading = false
         })
         .catch((err) => {
-          console.dir(err)
           this.isLoading = false
         })
     },

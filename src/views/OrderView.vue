@@ -188,7 +188,6 @@ export default {
         }
       )
         .then(res => {
-          console.log(res)
           this.newFinalTotal = res.data.data.final_total
           this.couponMassage = res.data.message
           emitter.emit('get-cart')

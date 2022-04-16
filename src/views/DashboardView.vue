@@ -56,11 +56,9 @@ export default {
         this.$http.post(`${this.url}/api/user/check`)
           .then(res => {
             // this.getProducts()
-            console.log('登入成功')
             this.isLogin = true
           })
           .catch(err => {
-            console.dir(err)
             this.isLogin = false
             this.$router.push('/Login')
           })

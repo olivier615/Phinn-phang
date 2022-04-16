@@ -51,7 +51,6 @@ export default {
     getBlogs (page = 1) {
       this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/articles/?page=${page}`)
         .then(res => {
-          console.log(res.data)
           this.articles = res.data.articles
           this.pagination = res.data.pagination
           this.getTagsList()
