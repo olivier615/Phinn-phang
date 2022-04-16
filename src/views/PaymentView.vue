@@ -38,11 +38,11 @@
         </div>
       <div class="col-md-4 col-12 mt-5">
         <h4 class="text-center text-secondary fw-bolder mb-4">支付方式</h4>
-        <div class="d-flex flex-column px-6">
+        <div class="d-flex flex-column px-lg-6 px-md-4 px-sm-6">
           <div class="form-check border-secondary border mb-2 py-2"
           :class="{ 'bg-info': payment === '信用卡付款'}">
             <input v-model="payment" value="信用卡付款"
-            class="form-check-input ms-6" type="radio" name="payment" id="creditCard">
+            class="form-check-input ms-2" type="radio" name="payment" id="creditCard">
             <label class="form-check-label ms-3" for="creditCard">
               信用卡付款
             </label>
@@ -50,7 +50,7 @@
           <div class="form-check border-secondary border mb-2 py-2"
           :class="{ 'bg-info': payment === '銀行轉帳'}">
             <input v-model="payment" value="銀行轉帳"
-            class="form-check-input ms-6" type="radio" name="payment" id="transfer">
+            class="form-check-input ms-2" type="radio" name="payment" id="transfer">
             <label class="form-check-label ms-3" for="transfer">
               銀行轉帳
             </label>
@@ -58,7 +58,7 @@
           <div class="form-check border-secondary border mb-2 py-2"
           :class="{ 'bg-info': payment === '貨到付款' }">
             <input v-model="payment" value="貨到付款"
-            class="form-check-input ms-6" type="radio" name="payment" id="cashOnDelivery">
+            class="form-check-input ms-2" type="radio" name="payment" id="cashOnDelivery">
             <label class="form-check-label ms-3" for="cashOnDelivery">
               貨到付款
             </label>

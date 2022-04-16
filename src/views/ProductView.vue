@@ -160,10 +160,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.img-banner-ProductView{
-  background-image: url(../assets/image/pageBanner/banner-product.jpg);
-  background-position: center left;
-}
-</style>

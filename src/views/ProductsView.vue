@@ -154,10 +154,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.img-banner-ProductsView{
-  background-image: url(../assets/image/pageBanner/banner-product.jpg);
-  background-position: center left;
-}
-</style>

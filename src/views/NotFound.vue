@@ -9,13 +9,3 @@
     </div>
   </div>
 </template>
-<style lang="scss">
-.bg-sp{
-  background-color: #2E1A04;
-}
-.bg-oops{
-  background-image: url(../assets/image/not-found.jpg);
-  background-size: cover;
-  background-position: center center;
-}
-</style>

@@ -79,20 +79,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.bg-sp{
-  background-color: #2E1A04;
-}
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
-}
-.bg-login{
-    background-image: url(../assets/image/login.jpg);
-    background-size: cover;
-    background-position: center center;
-}
-</style>

@@ -95,10 +95,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.img-banner-BlogsView{
-  background-image: url(../assets/image/pageBanner/banner-blogs.jpg);
-  background-position: center left ;
-}
-</style>

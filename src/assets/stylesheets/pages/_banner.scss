@@ -6,3 +6,57 @@
   height:35vh;
   background-size: cover;
 }
+
+.bg {
+  background-image: url(./assets/image/index/index-banner.jpg);
+  background-size: cover;
+  background-position: bottom center;
+  height: 100vh
+}
+.bg2{
+  background-image: url(./assets/image/index/attachment/att-01.jpg);
+  background-size: cover;
+  background-position: center center;
+  height: 50vh
+}
+.bg3{
+  background-image: url(./assets/image/index/attachment/att-02.jpg);
+  background-size: cover;
+  background-position: center center;
+  height: 50vh
+}
+.bg4{
+  background-image: url(./assets/image/index/attachment/att-03.jpg);
+  background-size: cover;
+  background-position: center center;
+  height: 50vh
+}
+
+.img-banner-ProductView, .img-banner-ProductsView{
+  background-image: url(./assets/image/pageBanner/banner-product.jpg);
+  background-position: center left;
+}
+.img-banner-BlogsView{
+  background-image: url(./assets/image/pageBanner/banner-blogs.jpg);
+  background-position: center left ;
+}
+
+.bg-sp{
+  background-color: #2E1A04;
+}
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.bg-login{
+    background-image: url(./assets/image/login.jpg);
+    background-size: cover;
+    background-position: center center;
+}
+.bg-oops{
+  background-image: url(./assets/image/not-found.jpg);
+  background-size: cover;
+  background-position: center center;
+}

@@ -59,7 +59,7 @@
           </table>
           <div class="d-flex justify-content-between">
             <button class="btn btn-outline-secondary"
-            @click="deleteCart"
+            @click="OpenDeleteCartsModal"
             :disabled="isLoading === true || isLoading !== ''">
               <span>
                 <span class="spinner-border spinner-border-sm fs-5 text-secondary" role="status"
@@ -86,14 +86,18 @@
     </div>
       </div>
     <swiper />
+    <DeleteCart ref="DeleteCartsModal"
+    @update="getCarts" />
 </template>
 
 <script>
 import emitter from '@/libs/emitter.js'
+import DeleteCart from '@/components/DeleteCart.vue'
 import swiper from '@/components/SwiperView.vue'
 export default {
   components: {
-    swiper
+    swiper,
+    DeleteCart
   },
   data () {
     return {
@@ -141,6 +145,9 @@ export default {
           console.dir(err)
           this.isLoading = ''
         })
+    },
+    OpenDeleteCartsModal () {
+      this.$refs.DeleteCartsModal.openModal()
     },
     deleteItem (item) {
       this.isLoading = item.id

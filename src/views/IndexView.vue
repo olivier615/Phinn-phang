@@ -146,8 +146,8 @@
   <swiper />
   <div class="container mt-6">
     <div class="row">
-      <h4 class="mb-4 border-start border-primary ps-2 border-3 fw-bolder text-secondary">追蹤鼻芳</h4>
-        <div class="col-12 col-sm-6 col-md-4">
+      <div class="col-12 col-sm-6 col-md-4">
+          <h4 class="mb-4 border-start border-primary ps-2 border-3 fw-bolder text-secondary">追蹤鼻芳</h4>
           <div class="d-flex flex-column justify-content-start" style="height:100%">
             <a class="btn btn-outline-primary fw-bolder fs-5 mb-2">
               <span class="bi bi-instagram fs-4 me-2"></span>
@@ -212,29 +212,3 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-.bg {
-  background-image: url(../assets/image/index/index-banner.jpg);
-  background-size: cover;
-  background-position: bottom center;
-  height: 100vh
-}
-.bg2{
-  background-image: url(../assets/image/index/attachment/att-01.jpg);
-  background-size: cover;
-  background-position: center center;
-  height: 50vh
-}
-.bg3{
-  background-image: url(../assets/image/index/attachment/att-02.jpg);
-  background-size: cover;
-  background-position: center center;
-  height: 50vh
-}
-.bg4{
-  background-image: url(../assets/image/index/attachment/att-03.jpg);
-  background-size: cover;
-  background-position: center center;
-  height: 50vh
-}
-</style>
