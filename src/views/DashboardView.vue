@@ -55,13 +55,12 @@ export default {
       if (token) {
         this.$http.post(`${this.url}/api/user/check`)
           .then(res => {
-            // this.getProducts()
             this.isLogin = true
           })
-          .catch(err => {
-            this.isLogin = false
+          .catch(
+            this.isLogin = false,
             this.$router.push('/Login')
-          })
+          )
       } else {
         alert('尚未登入')
         this.isLogin = false

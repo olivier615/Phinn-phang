@@ -83,9 +83,9 @@ export default {
           this.pagination = res.data.pagination
           this.isLoading = false
         })
-        .catch((err) => {
+        .catch(
           this.isLoading = false
-        })
+        )
     },
     OpenDeleteOrderModal (order) {
       this.order = order

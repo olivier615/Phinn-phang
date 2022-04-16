@@ -100,9 +100,9 @@ export default {
             this.isLoading = false
             this.$router.push('/admin/coupons')
           })
-          .catch((err) => {
+          .catch(
             this.isLoading = false
-          })
+          )
       } else {
         const { id } = this.$route.params
         this.$http.put(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/coupon/${id}`,
@@ -112,9 +112,9 @@ export default {
             this.isLoading = false
             this.$router.push('/admin/coupons')
           })
-          .catch(err => {
+          .catch(
             this.isLoading = false
-          })
+          )
       }
     },
     getCoupon () {

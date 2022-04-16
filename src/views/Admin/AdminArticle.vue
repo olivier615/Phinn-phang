@@ -170,9 +170,9 @@ export default {
           this.article.image = res.data.imageUrl
           this.isLoading = false
         })
-        .catch(err => {
+        .catch(
           this.isLoading = false
-        })
+        )
     },
     addNewTag () {
       this.article.tags.push('')

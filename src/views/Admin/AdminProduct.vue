@@ -141,9 +141,9 @@ export default {
             this.product = res.data.product
             this.isLoading = false
           })
-          .catch((err) => {
+          .catch(
             this.isLoading = false
-          })
+          )
       }
     },
     upload () {
@@ -156,9 +156,9 @@ export default {
           this.product.imageUrl = res.data.imageUrl
           this.isLoading = false
         })
-        .catch(err => {
+        .catch(
           this.isLoading = false
-        })
+        )
     },
     createImagesUrl () {
       this.product.imagesUrl = []

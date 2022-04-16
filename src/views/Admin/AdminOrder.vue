@@ -158,9 +158,9 @@ export default {
           this.order = orderArr[0]
           this.isLoading = false
         })
-        .catch((err) => {
+        .catch(
           this.isLoading = false
-        })
+        )
     },
     updateOrder () {
       this.isLoading = true
@@ -175,9 +175,9 @@ export default {
           this.isLoading = false
           this.$router.push('/admin/orders')
         })
-        .catch((err) => {
+        .catch(
           this.isLoading = false
-        })
+        )
     }
   },
   mounted () {

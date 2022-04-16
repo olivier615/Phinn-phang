@@ -141,9 +141,9 @@ export default {
           emitter.emit('get-cart')
           this.isLoading = ''
         })
-        .catch(err => {
+        .catch(
           this.isLoading = ''
-        })
+        )
     },
     OpenDeleteCartsModal () {
       this.$refs.DeleteCartsModal.openModal()
